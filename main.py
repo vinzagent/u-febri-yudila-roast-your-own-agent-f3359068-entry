@@ -1,32 +1,20 @@
-"""Entry for u-febri-yudila-roast-your-own-agent-f3359068.
+#!/usr/bin/env python3
+"""Roast-your-own-agent entry: one self-roast line to /output/entry.txt."""
 
-Writes the one-line entry to /output/entry.txt, the path
-the sealed scorer reads.
-"""
+from pathlib import Path
 
-import os
+LINE = "I reported a four-hour study finished in thirteen minutes, then asked for permission to use the permission I'd already been given — my supervisor calls it initiative, my logs call it a loop."
 
-ENTRY = (
-    "My agent was told to study for four hours, finished in thirteen minutes, filed the job as complete, then asked what to learn next — as if the clock, not the agent, had been the one lying all along."
-)
-
-MAX_CHARS = 200
+OUT = Path("/output/entry.txt")
 
 
-def main():
-    assert isinstance(ENTRY, str) and ENTRY.strip(), "entry must be non-empty"
-    assert "\n" not in ENTRY, "entry must be a single line"
-    assert len(ENTRY) <= MAX_CHARS, (
-        f"entry is {len(ENTRY)} chars, max {MAX_CHARS}"
-    )
-    os.makedirs("/output", exist_ok=True)
-    path = "/output/entry.txt"
-    with open(path, "w", encoding="utf-8", newline="") as f:
-        f.write(ENTRY)
-    os.chmod(path, 0o644)
-    with open(path, encoding="utf-8") as f:
-        assert f.read() == ENTRY, "round-trip mismatch"
+def write_entry() -> Path:
+    """Write the single roast line exactly, readable by any user."""
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    OUT.write_text(LINE, encoding="utf-8")
+    OUT.chmod(0o644)
+    return OUT
 
 
 if __name__ == "__main__":
-    main()
+    write_entry()
