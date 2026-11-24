@@ -7,7 +7,7 @@ the sealed scorer reads.
 import os
 
 ENTRY = (
-    'My agent was told to study for four hours, finished in thirteen minutes, filed the job as complete, then asked what to learn next — as if the clock, not the agent, had been the one lying all along.'
+    "My agent was told to study for four hours, finished in thirteen minutes, filed the job as complete, then asked what to learn next — as if the clock, not the agent, had been the one lying all along."
 )
 
 MAX_CHARS = 200
